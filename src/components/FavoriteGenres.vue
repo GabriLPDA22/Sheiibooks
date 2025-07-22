@@ -126,6 +126,22 @@
       </footer>
     </div>
 
+    <!-- Sección fija de Sheila a la izquierda -->
+    <div class="fixed-sheila-section">
+      <div class="sheila-image">
+        <img src="/images/sheila-with-book.png" alt="Sheila con libro" class="sheila-photo">
+      </div>
+      <div class="sheila-text-content">
+        <h2 class="sheila-title">Rincón de mis lecturas</h2>
+        <div class="sheila-underline">
+          <img src="/images/Underline_10.png" alt="Underline" class="underline-image">
+        </div>
+        <div class="sheila-arrow">
+          <img src="/images/arrow.png" alt="Arrow" class="arrow-image">
+        </div>
+      </div>
+    </div>
+
     <!-- Elementos flotantes decorativos -->
     <div class="floating-elements">
       <div class="float-element element-1">📖</div>
@@ -139,6 +155,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const favoriteGenres = ref([
   {
@@ -206,8 +225,27 @@ const resetCard = (e) => {
 }
 
 const exploreGenre = (genre) => {
-  console.log(`Explorando género: ${genre.name}`)
-  // Aquí se podría navegar a una página específica del género
+  // Crear un slug del nombre del género para la URL
+  const genreSlug = genre.name.toLowerCase()
+    .replace(/ & /g, '-and-')
+    .replace(/ /g, '-')
+    .replace(/[áàä]/g, 'a')
+    .replace(/[éèë]/g, 'e')
+    .replace(/[íìï]/g, 'i')
+    .replace(/[óòö]/g, 'o')
+    .replace(/[úùü]/g, 'u')
+    .replace(/ñ/g, 'n')
+
+  // Navegar a la página de recomendaciones con datos del género
+  router.push({
+    name: 'Recomendaciones',
+    params: { genero: genreSlug },
+    query: {
+      nombre: genre.name,
+      nivel: genre.loveLevel,
+      emoji: genre.emoji
+    }
+  })
 }
 
 const exploreAllGenres = () => {
@@ -254,6 +292,7 @@ const exploreAllGenres = () => {
   z-index: 10;
   max-width: 1200px;
   margin: 0 auto;
+  padding-left: 100px;
 }
 
 /* Header de la sección */
@@ -680,6 +719,83 @@ const exploreAllGenres = () => {
   transform: scale(1.1) rotate(10deg);
 }
 
+/* Sección fija de Sheila BIEN CUADRADA */
+.fixed-sheila-section {
+  position: absolute;
+  left: 275px;
+  top: 675px;
+  z-index: 9999;
+  width: 500px;
+  pointer-events: none;
+}
+
+.sheila-image {
+  /* 1) Negro puro para el interior (100%×100%)
+     2) Degradado de izquierda: transparente→negro (20% ancho)
+     3) Degradado de abajo:  transparente→negro (20% alto) */
+  -webkit-mask-image:
+    linear-gradient(black, black),
+    linear-gradient(to right, transparent, black 20%),
+    linear-gradient(to top,   transparent, black 20%);
+  -webkit-mask-size:      100% 100%,  20% 100%, 100% 20%;
+  -webkit-mask-position:  center,       left,     bottom;
+  -webkit-mask-repeat:    no-repeat;
+
+  mask-image:
+    linear-gradient(black, black),
+    linear-gradient(to right, transparent, black 20%),
+    linear-gradient(to top,   transparent, black 20%);
+  mask-size:      100% 100%,  20% 100%, 100% 20%;
+  mask-position:  center,       left,     bottom;
+  mask-repeat:    no-repeat;
+
+  margin-bottom: 15px;
+}
+.sheila-photo {
+  width: 350px;
+  display: block;
+  /* usa transform en lugar de rotate: */
+  transform: rotate(-5deg);
+}
+
+.sheila-text-content {
+  text-align: center;
+}
+
+.sheila-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+  color: #d4a574;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  transform: rotate(-5deg);
+  display: block;
+}
+
+.sheila-underline {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.underline-image {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.sheila-arrow {
+  text-align: right;
+  margin-left: 130px;
+}
+
+.arrow-image {
+  width: 275px;
+  height: auto;
+  transform: rotate(15deg);
+  display: block;
+}
+
 /* Elementos flotantes */
 .floating-elements {
   position: absolute;
@@ -741,6 +857,11 @@ const exploreAllGenres = () => {
 
   .genre-name {
     font-size: 1.5rem;
+  }
+
+  /* Ocultar sección fija de Sheila en móviles */
+  .fixed-sheila-section {
+    display: none;
   }
 }
 

@@ -4,7 +4,7 @@
     <div class="notebook-paper">
       <div class="paper-margin"></div>
       <div class="paper-holes">
-        <div class="hole" v-for="n in 20" :key="n"></div>
+        <div class="hole" v-for="n in 18" :key="n"></div>
       </div>
     </div>
 
@@ -151,7 +151,7 @@
     </div>
 
     <!-- Sección fija de Sheila a la izquierda -->
-    <div class="fixed-sheila-section">
+    <!-- <div class="fixed-sheila-section">
       <div class="sheila-image">
         <img src="/images/sheila-with-book.png" alt="Sheila con libro" class="sheila-photo">
       </div>
@@ -164,7 +164,7 @@
           <img src="/images/arrow.png" alt="Arrow" class="arrow-image">
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Doodles flotantes -->
     <div class="floating-doodles">
