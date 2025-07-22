@@ -1,18 +1,22 @@
 <template>
   <div class="biblioteca-page">
+    <!-- Nueva sección Sobre Mí -->
+    <AboutMe />
+
+    <!-- Sección de Géneros Favoritos -->
+    <FavoriteGenres />
+
     <!-- Sección de Recent Reviews (tu cuaderno actual) -->
     <RecentReviews />
-
-    <!-- Nueva sección de Géneros Favoritos -->
-    <FavoriteGenres />
 
     <!-- Aquí puedes añadir más secciones en el futuro -->
   </div>
 </template>
 
 <script setup>
-import RecentReviews from '../components/RecentReviews.vue'
+import AboutMe from '../components/AboutMe.vue'
 import FavoriteGenres from '../components/FavoriteGenres.vue'
+import RecentReviews from '../components/RecentReviews.vue'
 </script>
 
 <style scoped>
