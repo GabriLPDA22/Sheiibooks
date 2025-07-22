@@ -35,6 +35,8 @@ export function useHeroState() {
     "No era la oscuridad lo que me asustaba, sino el no poder ver.",
   ]);
 
+  
+
   return {
     mainTitleText,
     subtitleText,

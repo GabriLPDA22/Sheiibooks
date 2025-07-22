@@ -63,61 +63,143 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { gsap } from 'gsap';
+import { useRouter } from 'vue-router';
 import { useHeroState } from './composables/useHeroState';
 import { useHeroAnimations } from './composables/useHeroAnimations';
 
-// =================================================================
-// 1. DEFINICIÓN DE REFERENCIAS AL DOM
-// =================================================================
+// Router para navegación
+const router = useRouter();
+
+// Referencias DOM existentes + nuevas
 const heroSection = ref(null), leftSection = ref(null), centerSection = ref(null),
       rightSection = ref(null), avatarContainer = ref(null), mainTitle = ref(null),
       subtitle = ref(null), typewriterArea = ref(null), descriptionArea = ref(null),
       skillsArea = ref(null), ctaArea = ref(null), scrollIndicator = ref(null),
       mainButton = ref(null), quotesBackground = ref(null);
 
-// =================================================================
-// 2. OBTENCIÓN DEL ESTADO Y LÓGICA
-// =================================================================
+// Nuevas referencias para efectos
+const particlesCanvas = ref(null);
+const ambientLight = ref(null);
 
-// Carga todo el contenido textual y las listas desde el composable de estado.
+// Estado y lógica existente
 const { mainTitleText, subtitleText, fullTypedText, descriptionText, ctaText, scrollHint, skills, backgroundQuotes } = useHeroState();
-
-// Estado específico para la máquina de escribir (se queda aquí porque lo manipula el composable de animaciones).
 const typedText = ref('');
 const showCursor = ref(true);
 
-// Carga toda la lógica de animación, pasándole las refs del DOM y el estado que necesita manipular.
+// Animaciones con nuevas refs
 const { handleMouseMove, animateSkill, resetSkill } = useHeroAnimations(
-  { // Objeto con todas las referencias al DOM
+  {
     heroSection, leftSection, centerSection, rightSection, avatarContainer,
     mainTitle, subtitle, typewriterArea, descriptionArea, skillsArea,
-    ctaArea, scrollIndicator, mainButton, quotesBackground
+    ctaArea, scrollIndicator, mainButton, quotesBackground,
+    particlesCanvas, ambientLight
   },
-  { // Objeto con el estado que las animaciones necesitan modificar
-    typedText, showCursor, fullTypedText
-  }
+  { typedText, showCursor, fullTypedText }
 );
 
-// =================================================================
-// 3. MÉTODOS DE INTERACCIÓN DEL USUARIO
-// =================================================================
+// Sistema de partículas
+const initParticleSystem = () => {
+  if (!particlesCanvas.value) return;
 
-/**
- * Lógica para el botón de llamada a la acción principal.
- * Se mantiene aquí porque es una acción principal del componente.
- */
+  const canvas = particlesCanvas.value;
+  const ctx = canvas.getContext('2d');
+
+  const resizeCanvas = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  };
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const particles = [];
+  const particleCount = 60;
+
+  for (let i = 0; i < particleCount; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2 + 0.5,
+      speedX: (Math.random() - 0.5) * 0.6,
+      speedY: (Math.random() - 0.5) * 0.6,
+      opacity: Math.random() * 0.4 + 0.1,
+      color: Math.random() > 0.7 ? '#D4AF37' : 'rgba(139, 69, 19, 0.3)',
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(particle => {
+      particle.x += particle.speedX;
+      particle.y += particle.speedY;
+      particle.pulse += 0.02;
+
+      if (particle.x < 0) particle.x = canvas.width;
+      if (particle.x > canvas.width) particle.x = 0;
+      if (particle.y < 0) particle.y = canvas.height;
+      if (particle.y > canvas.height) particle.y = 0;
+
+      const pulseOpacity = particle.opacity + Math.sin(particle.pulse) * 0.2;
+
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.fillStyle = particle.color;
+      ctx.globalAlpha = Math.max(0, pulseOpacity);
+      ctx.fill();
+
+      if (particle.color.includes('#D4AF37')) {
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = particle.color;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    });
+
+    requestAnimationFrame(animate);
+  };
+
+  animate();
+};
+
+onMounted(() => {
+  initParticleSystem();
+
+  // Luz ambiental
+  if (ambientLight.value) {
+    gsap.to(ambientLight.value, {
+      opacity: 0.4,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+  }
+});
+
+// Método de explorar contenido con navegación del router
 const exploreContent = () => {
   if (!mainButton.value) return;
 
+  // Efecto ripple
+  const ripple = mainButton.value.querySelector('.hero-section__button-ripple');
+  if (ripple) {
+    gsap.fromTo(ripple,
+      { width: 0, height: 0, opacity: 1 },
+      { width: '100px', height: '100px', opacity: 0, duration: 0.6, ease: "power2.out" }
+    );
+  }
+
   gsap.timeline()
     .to(mainButton.value, { scale: 0.97, duration: 0.15, ease: "power2.out" })
-    .to(mainButton.value, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" });
-
-  console.log('🌟 Explorando la biblioteca de Sheila 🌟');
-  // Lógica de navegación:
-  // window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    .to(mainButton.value, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" })
+    .call(() => {
+      // Navegación con router a la página de biblioteca
+      router.push('/biblioteca');
+    });
 };
 </script>
 
