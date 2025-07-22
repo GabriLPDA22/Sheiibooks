@@ -67,6 +67,11 @@
             <div class="washi-tape"></div>
           </div>
 
+          <!-- NEW badge para el primer libro -->
+          <div v-if="index === 0" class="new-badge">
+            <img src="/images/New.png" alt="NEW!" class="new-image">
+          </div>
+
           <!-- Contenido de la nota -->
           <div class="note-content">
             <!-- Título del libro -->
@@ -145,6 +150,22 @@
       </footer>
     </div>
 
+    <!-- Sección fija de Sheila a la izquierda -->
+    <div class="fixed-sheila-section">
+      <div class="sheila-image">
+        <img src="/images/sheila-with-book.png" alt="Sheila con libro" class="sheila-photo">
+      </div>
+      <div class="sheila-text-content">
+        <h2 class="sheila-title">Rincón de mis lecturas</h2>
+        <div class="sheila-underline">
+          <img src="/images/Underline_10.png" alt="Underline" class="underline-image">
+        </div>
+        <div class="sheila-arrow">
+          <img src="/images/arrow.png" alt="Arrow" class="arrow-image">
+        </div>
+      </div>
+    </div>
+
     <!-- Doodles flotantes -->
     <div class="floating-doodles">
       <div class="float-doodle doodle-1">✨</div>
@@ -174,12 +195,12 @@ const currentDate = computed(() => {
 const books = ref([
   {
     id: 1,
-    title: 'El Nombre del Viento',
-    author: 'Patrick Rothfuss',
+    title: 'La asistenta',
+    author: 'Freida McFadden',
     rating: 5,
-    excerpt: 'Increíble mundo de fantasía que me transportó completamente. Kvothe es un protagonista fascinante.',
-    tags: ['Fantasía', 'Épico', 'Favorito'],
-    date: '2024-01-15'
+    excerpt: 'Thriller psicológico adictivo lleno de secretos, giros inesperados y tensión domestica. Aquí nada ni nadie es lo que parece.',
+    tags: ['Thriller psicológico', 'Suspense', 'Suspense'],
+    date: '2024-09-17'
   },
   {
     id: 2,
@@ -228,7 +249,6 @@ const seeAllReviews = () => {
 }
 </script>
 
-<!-- Aquí van todos los estilos... mantengo los mismos -->
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Dancing+Script:wght@700&display=swap');
 
@@ -490,6 +510,20 @@ const seeAllReviews = () => {
 .deco-3 .washi-tape { background: linear-gradient(45deg, #06ffa5, #96f7d2); }
 .deco-4 .washi-tape { background: linear-gradient(45deg, #ffd93d, #ffec8b); }
 
+/* NEW badge */
+.new-badge {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  z-index: 10;
+}
+
+.new-image {
+  width: 60px;
+  height: auto;
+  transform: rotate(-15deg);
+}
+
 .book-title {
   font-family: 'Dancing Script', cursive;
   font-size: 1.8rem;
@@ -687,6 +721,83 @@ const seeAllReviews = () => {
   margin-left: 0.5rem;
 }
 
+/* Sección fija de Sheila BIEN CUADRADA */
+.fixed-sheila-section {
+  position: absolute;
+  left: 300px;
+  top: 375px;
+  z-index: 9999;
+  width: 500px;
+  pointer-events: none;
+}
+
+.sheila-image {
+  /* 1) Negro puro para el interior (100%×100%)
+     2) Degradado de izquierda: transparente→negro (20% ancho)
+     3) Degradado de abajo:  transparente→negro (20% alto) */
+  -webkit-mask-image:
+    linear-gradient(black, black),
+    linear-gradient(to right, transparent, black 20%),
+    linear-gradient(to top,   transparent, black 20%);
+  -webkit-mask-size:      100% 100%,  20% 100%, 100% 20%;
+  -webkit-mask-position:  center,       left,     bottom;
+  -webkit-mask-repeat:    no-repeat;
+
+  mask-image:
+    linear-gradient(black, black),
+    linear-gradient(to right, transparent, black 20%),
+    linear-gradient(to top,   transparent, black 20%);
+  mask-size:      100% 100%,  20% 100%, 100% 20%;
+  mask-position:  center,       left,     bottom;
+  mask-repeat:    no-repeat;
+
+  margin-bottom: 15px;
+}
+.sheila-photo {
+  width: 350px;
+  display: block;
+  /* usa transform en lugar de rotate: */
+  transform: rotate(-5deg);
+}
+
+.sheila-text-content {
+  text-align: center;
+}
+
+.sheila-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+  color: #d4a574;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  transform: rotate(-5deg);
+  display: block;
+}
+
+.sheila-underline {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.underline-image {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.sheila-arrow {
+  text-align: right;
+  margin-left: 130px;
+}
+
+.arrow-image {
+  width: 275px;
+  height: auto;
+  transform: rotate(15deg);
+  display: block;
+}
+
 /* Doodles flotantes */
 .floating-doodles {
   position: fixed;
@@ -755,6 +866,11 @@ const seeAllReviews = () => {
 
   .date-underline {
     margin: 5px auto 0;
+  }
+
+  /* Ocultar sección fija de Sheila en móviles */
+  .fixed-sheila-section {
+    display: none;
   }
 }
 </style>

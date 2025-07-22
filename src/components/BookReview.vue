@@ -104,35 +104,47 @@
               </div>
             </div>
 
-            <!-- Extracto inicial -->
-            <div class="initial-excerpt">
+            <!-- Cita del libro (primer recuadro) -->
+            <div class="book-quote-box">
               <div class="quote-decoration left">"</div>
-              <p class="excerpt-text">{{ bookData.excerpt }}</p>
+              <p class="quote-text">{{ bookData.bookQuote.text }}</p>
               <div class="quote-decoration right">"</div>
+              <div class="quote-context">— {{ bookData.bookQuote.context }}</div>
+              <div class="highlight-marker gold"></div>
             </div>
 
-            <!-- Review completa -->
+            <!-- Review completa con los nuevos apartados -->
             <div class="full-review">
-              <h3 class="section-title">Lo que más me gustó:</h3>
-              <div class="highlight-box positive">
-                <p>{{ bookData.likes }}</p>
-                <div class="highlight-marker green"></div>
-              </div>
-
-              <h3 class="section-title">Personajes favoritos:</h3>
-              <ul class="character-list">
-                <li v-for="character in bookData.favoriteCharacters" :key="character.name">
-                  <strong>{{ character.name }}:</strong> {{ character.description }}
-                </li>
-              </ul>
-
-              <h3 class="section-title">Reflexiones personales:</h3>
-              <div class="thoughts-section">
-                <p v-for="thought in bookData.personalThoughts" :key="thought" class="thought-paragraph">
-                  {{ thought }}
+              <!-- Opinión Personal -->
+              <h3 class="section-title">Opinión personal</h3>
+              <div class="opinion-section">
+                <p v-for="paragraph in bookData.personalOpinion" :key="paragraph" class="opinion-paragraph">
+                  {{ paragraph }}
                 </p>
+                <div class="highlight-marker pink"></div>
               </div>
 
+              <!-- Sobre los personajes -->
+              <h3 class="section-title">Sobre los personajes...</h3>
+              <div class="characters-section">
+                <div
+                  v-for="character in bookData.charactersOpinion"
+                  :key="character.name"
+                  class="character-card"
+                >
+                  <div class="character-name">{{ character.name }}</div>
+                  <p class="character-opinion">{{ character.opinion }}</p>
+                </div>
+              </div>
+
+              <!-- La ambientación -->
+              <h3 class="section-title">La ambientación fue...</h3>
+              <div class="ambientacion-box">
+                <p class="ambientacion-text">{{ bookData.ambientacion }}</p>
+                <div class="highlight-marker blue"></div>
+              </div>
+
+              <!-- Recomendación -->
               <h3 class="section-title">¿Lo recomendaría?</h3>
               <div class="recommendation-box">
                 <div class="recommendation-header">
@@ -144,17 +156,17 @@
                 <p class="recommendation-reason">{{ bookData.recommendationReason }}</p>
               </div>
 
-              <!-- Citas favoritas -->
-              <h3 class="section-title">Frases que me marcaron:</h3>
-              <div class="favorite-quotes">
+              <!-- Si te gustó este libro -->
+              <h3 class="section-title">Si te gustó este libro, podrá gustarte este otro</h3>
+              <div class="similar-books">
                 <div
-                  v-for="(quote, index) in bookData.favoriteQuotes"
-                  :key="index"
-                  class="quote-card"
+                  v-for="book in bookData.similarBooks"
+                  :key="book.title"
+                  class="similar-book-card"
                 >
-                  <p class="quote-text">"{{ quote.text }}"</p>
-                  <div class="quote-context">— {{ quote.context }}</div>
-                  <div class="highlight-marker yellow"></div>
+                  <div class="similar-book-title">{{ book.title }}</div>
+                  <div class="similar-book-author">por {{ book.author }}</div>
+                  <p class="similar-book-reason">{{ book.reason }}</p>
                 </div>
               </div>
             </div>
@@ -196,46 +208,50 @@ const route = useRoute()
 
 // Datos del libro (normalmente vendrían de una API)
 const bookData = ref({
-  title: 'El Nombre del Viento',
-  author: 'Patrick Rothfuss',
+  title: 'La asistenta',
+  author: 'Freida McFadden',
   rating: 5,
-  excerpt: 'Increíble mundo de fantasía que me transportó completamente. Kvothe es un protagonista fascinante.',
-  tags: ['Fantasía', 'Épico', 'Favorito', 'Primera Lectura'],
-  date: '2024-01-15',
-  photoWithBook: '/images/sheila-with-book.png', // Foto de Sheila con el libro
-  likes: 'La construcción del mundo es absolutamente magistral. Rothfuss tiene una forma de escribir que te envuelve desde la primera página. La magia del mundo de Kvothe se siente real y tangible, y la forma en que se cuenta la historia, como una historia dentro de otra historia, es brillante.',
-  favoriteCharacters: [
+  tags: ['Thriller psicológico', 'Suspense', 'Novela negra', 'Adictivo'],
+  date: '2024-09-17',
+  photoWithBook: '/images/Review_la_asistenta.jpg', // Foto de Sheila con el libro
+
+  // Cita del libro (primer recuadro)
+  bookQuote: {
+    text: '“Al cerrar la puerta, noto marcas en la madera. Líneas largas y delgadas… parecen arañazos. Como si alguien hubiera estado rascando la puerta. Intentando salir.”',
+    context: 'La asistenta – Freida McFadden'
+  },
+
+  // Opinión personal (varios párrafos)
+  personalOpinion: [
+    'Es un libro que logra confundirte desde el principio, no confías en los personajes, sus actitudes son complejas y no sabes qué creer.',
+    'Me ha chiflado la manera de escribir de Freida, sabe cómo engancharte y dejarte con la intriga para querer seguir leyendo.',
+    'No es un libro con el que se pasa gran tensión, pero sí estás expectante a la espera del siguiente paso.'
+  ],
+
+  // Sobre los personajes
+  charactersOpinion: [
     {
-      name: 'Kvothe',
-      description: 'Un protagonista complejo, arrogante pero entrañable. Su sed de conocimiento es admirable.'
-    },
-    {
-      name: 'Denna',
-      description: 'Misteriosa y fascinante. Su relación con Kvothe está llena de tensión no resuelta.'
-    },
-    {
-      name: 'Kilvin',
-      description: 'El maestro artificiero. Me encanta su personalidad práctica y directa.'
+      opinion: 'Freida consigue construir unos personajes llenos de misterio, y absolutamente todos tienen secretos. A medida que avanza la trama, esa familia perfecta se convierte en todo un embrollo psicológico y nadie es quien parece ser.'
     }
   ],
-  personalThoughts: [
-    'Este libro me recordó por qué amo la fantasía. Hay algo mágico en perderse en un mundo completamente diferente al nuestro.',
-    'La forma en que Rothfuss maneja el tiempo narrativo es increíble. Saltas entre el presente y el pasado sin confundirte nunca.',
-    'Me quedé con ganas de más. Necesito el tercer libro YA. La espera está siendo eterna pero este libro vale cada segundo.'
-  ],
+
+  // La ambientación
+  ambientacion: 'Encontrarnos en un lugar doméstico como la casa de la familia Winchester ha sido realmente inquietante, que es precisamente el objetivo de la lectura. Además de sentirte atrapado, ves cosas raras sin poder darles una explicación lógica.',
+
+  // Recomendación
   wouldRecommend: true,
-  recommendationReason: 'Es perfecto para cualquiera que ame la fantasía épica bien construida. Si te gustó Harry Potter o Señor de los Anillos, este libro te va a encantar. La prosa es hermosa y la historia te atrapa desde el inicio.',
-  favoriteQuotes: [
+  recommendationReason: 'Si te gusta el thriller doméstico, algo de tensión y un enganche a una lectura ligera, esta es una apuesta segura.',
+
+  // Libros similares
+  similarBooks: [
     {
-      text: 'Las palabras son pálidos ecos de mundos olvidados',
-      context: 'Reflexión de Kvothe sobre el poder de las historias'
-    },
-    {
-      text: 'El silencio de tres partes',
-      context: 'La descripción poética del silencio que aparece varias veces'
+      title: 'No la dejes entrar',
+      author: 'Nicola Sanders',
+      reason: 'Si te gustó “La asistenta” por su ritmo de lectura, personajes, tensión y los secretos familiares, “No la dejes entrar” va en la misma línea, compartiendo el mismo escenario de thriller doméstico.'
     }
   ]
-})
+});
+
 
 const formatDateLong = (dateStr) => {
   const date = new Date(dateStr)
@@ -340,7 +356,6 @@ const goBack = () => {
   transition: all 0.4s ease;
   position: relative;
   z-index: 5;
-  /* Sin clip-path para evitar cortes */
 }
 
 .author-image:hover {
@@ -580,7 +595,6 @@ const goBack = () => {
   border: 2px solid #E6D3B7;
   position: relative;
   min-height: 80vh;
-  /* Textura de puntitos más visible y extendida */
   background-image:
     radial-gradient(circle at 1px 1px, rgba(139, 69, 19, 0.08) 1px, transparent 0);
   background-size: 15px 15px;
@@ -604,7 +618,6 @@ const goBack = () => {
   gap: 50px;
 }
 
-/* Agujeros del espiral más realistas */
 .hole {
   width: 10px;
   height: 10px;
@@ -648,7 +661,6 @@ const goBack = () => {
     inset 0 -1px 2px rgba(0,0,0,0.1);
 }
 
-/* Esquinas dobladas mejoradas */
 .folded-corner {
   position: absolute;
   width: 30px;
@@ -727,41 +739,52 @@ const goBack = () => {
 .doodle.star { color: #FFD700; }
 .doodle.book { color: #8B4513; }
 
-.initial-excerpt {
+/* CITA DEL LIBRO (primer recuadro) */
+.book-quote-box {
   position: relative;
   margin-bottom: 2.5rem;
-  padding: 1.5rem;
-  background: rgba(255, 182, 193, 0.1);
-  border-radius: 10px;
-  border-left: 4px solid #FFB6C1;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 235, 59, 0.05));
+  border-radius: 15px;
+  border: 2px solid #FFD700;
+  border-left: 6px solid #FFA000;
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
 }
 
 .quote-decoration {
   font-family: 'Dancing Script', cursive;
   font-size: 3rem;
-  color: #A0522D;
+  color: #B8860B;
   position: absolute;
   font-weight: 700;
   opacity: 0.7;
 }
 
 .quote-decoration.left {
-  top: -10px;
-  left: 5px;
+  top: -5px;
+  left: 10px;
 }
 
 .quote-decoration.right {
-  bottom: -20px;
-  right: 10px;
+  bottom: -15px;
+  right: 15px;
 }
 
-.excerpt-text {
-  font-size: 1.2rem;
+.quote-text {
+  font-size: 1.3rem;
   line-height: 1.7;
   color: #654321;
   font-style: italic;
   text-align: center;
   padding: 0 2rem;
+  margin-bottom: 1rem;
+}
+
+.quote-context {
+  text-align: right;
+  font-size: 1rem;
+  color: #8B4513;
+  font-weight: 600;
 }
 
 .full-review {
@@ -772,137 +795,188 @@ const goBack = () => {
   font-family: 'Special Elite', monospace;
   font-size: 1.3rem;
   color: #8B4513;
-  margin: 2rem 0 1rem 0;
+  margin: 2.5rem 0 1.5rem 0;
   border-bottom: 2px dashed #D2B48C;
   padding-bottom: 0.5rem;
 }
 
-.highlight-box {
+/* Opinión personal */
+.opinion-section {
   position: relative;
-  padding: 1.5rem;
-  margin: 1rem 0;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(144, 238, 144, 0.15) 0%, rgba(144, 238, 144, 0.08) 100%);
-  border: 2px solid #90EE90;
-  border-left: 6px solid #32CD32;
-  box-shadow:
-    0 4px 15px rgba(144, 238, 144, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  margin-bottom: 2rem;
 }
 
-.highlight-box p {
+.opinion-paragraph {
+  margin-bottom: 1.2rem;
+  color: #654321;
+  line-height: 1.7;
+  padding-left: 1rem;
+  border-left: 3px solid #FFB6C1;
+}
+
+/* Personajes */
+.characters-section {
+  margin-bottom: 2rem;
+}
+
+.character-card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid #E6D3B7;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  box-shadow: 0 3px 10px rgba(139, 69, 19, 0.1);
+}
+
+.character-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  color: #8B4513;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.character-opinion {
+  color: #654321;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Ambientación */
+.ambientacion-box {
+  position: relative;
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, rgba(144, 238, 144, 0.1), rgba(152, 251, 152, 0.05));
+  border-radius: 12px;
+  border: 2px solid #90EE90;
+  border-left: 6px solid #32CD32;
+  box-shadow: 0 6px 20px rgba(144, 238, 144, 0.2);
+}
+
+.ambientacion-text {
   color: #2D5016;
   font-weight: 500;
-  font-size: 1.05rem;
   line-height: 1.7;
   margin: 0;
 }
 
-.highlight-marker {
-  position: absolute;
-  bottom: 5px;
-  left: 10px;
-  right: 10px;
-  height: 6px;
-  border-radius: 3px;
-  opacity: 0.6;
-}
-
-.highlight-marker.green { background: #90EE90; }
-.highlight-marker.yellow { background: #FFFF99; }
-
-.character-list {
-  padding-left: 1.5rem;
-  margin: 1rem 0;
-}
-
-.character-list li {
-  margin-bottom: 0.8rem;
-  color: #654321;
-}
-
-.thoughts-section {
-  margin: 1rem 0;
-}
-
-.thought-paragraph {
-  margin-bottom: 1rem;
-  padding-left: 1rem;
-  border-left: 2px solid #D2B48C;
-  color: #654321;
-}
-
+/* Recomendación */
 .recommendation-box {
-  background: rgba(255, 215, 0, 0.1);
-  border: 2px solid #FFD700;
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin: 1rem 0;
+  background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 192, 203, 0.1));
+  border: 2px solid #FFB6C1;
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 6px 20px rgba(255, 182, 193, 0.2);
 }
 
 .recommendation-header {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
 .recommend-icon {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .recommend-text {
   font-weight: 600;
   color: #8B4513;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .recommendation-reason {
   color: #654321;
   margin: 0;
+  line-height: 1.6;
 }
 
-.favorite-quotes {
+/* Libros similares */
+.similar-books {
   margin: 1.5rem 0;
 }
 
-.quote-card {
-  position: relative;
-  background: #FFFEF7;
-  border: 1px solid #E6D3B7;
-  border-radius: 8px;
+.similar-book-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #E6D3B7;
+  border-radius: 10px;
   padding: 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(139, 69, 19, 0.1);
+  margin-bottom: 1.2rem;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.quote-text {
-  font-style: italic;
-  color: #654321;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+.similar-book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
 }
 
-.quote-context {
+.similar-book-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
   color: #8B4513;
-  font-size: 0.9rem;
-  text-align: right;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
 }
 
+.similar-book-author {
+  font-size: 0.95rem;
+  color: #A0522D;
+  font-style: italic;
+  margin-bottom: 0.8rem;
+}
+
+.similar-book-reason {
+  color: #654321;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Marcadores de resaltado */
+.highlight-marker {
+  position: absolute;
+  bottom: 8px;
+  left: 15px;
+  right: 15px;
+  height: 8px;
+  border-radius: 4px;
+  opacity: 0.4;
+}
+
+.highlight-marker.gold { background: #FFD700; }
+.highlight-marker.pink { background: #FFB6C1; }
+.highlight-marker.blue { background: #87CEEB; }
+.highlight-marker.green { background: #90EE90; }
+.highlight-marker.yellow { background: #FFFF99; }
+
+/* Footer de la página */
 .page-footer {
-  margin-top: 3rem;
+  margin-top: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px dashed #D2B48C;
-  padding-top: 1.5rem;
+  padding-top: 2rem;
 }
 
 .footer-doodles {
   display: flex;
-  gap: 1rem;
-  font-size: 1.2rem;
+  gap: 1.5rem;
+  font-size: 1.5rem;
 }
+
+.footer-doodle {
+  opacity: 0.6;
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+.footer-doodle:nth-child(1) { animation-delay: 0s; }
+.footer-doodle:nth-child(2) { animation-delay: 1s; }
+.footer-doodle:nth-child(3) { animation-delay: 2s; }
 
 .signature {
   text-align: right;
@@ -910,7 +984,7 @@ const goBack = () => {
 
 .signature-text {
   font-family: 'Dancing Script', cursive;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: #8B4513;
   font-weight: 700;
 }
@@ -918,7 +992,13 @@ const goBack = () => {
 .signature-date {
   font-size: 0.9rem;
   color: #A0522D;
-  margin-top: 0.2rem;
+  margin-top: 0.3rem;
+  font-family: 'Special Elite', monospace;
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
 }
 
 /* Responsive */
@@ -962,6 +1042,21 @@ const goBack = () => {
 
   .folded-corner.bottom-left {
     left: 40px;
+  }
+
+  .quote-text {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+
+  .page-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .similar-book-card {
+    padding: 1.2rem;
   }
 }
 </style>
