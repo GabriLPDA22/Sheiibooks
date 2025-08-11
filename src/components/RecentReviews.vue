@@ -199,35 +199,26 @@ const books = ref([
     author: 'Freida McFadden',
     rating: 5,
     excerpt: 'Thriller psicológico adictivo lleno de secretos, giros inesperados y tensión domestica. Aquí nada ni nadie es lo que parece.',
-    tags: ['Thriller psicológico', 'Suspense', 'Suspense'],
+    tags: ['Thriller psicológico', 'Suspense', 'Novela negra'],
     date: '2024-09-17'
   },
   {
     id: 2,
-    title: 'Circe',
-    author: 'Madeline Miller',
+    title: 'No confies en Asher Hall',
+    author: 'Myriam M. Lejardi',
     rating: 5,
-    excerpt: 'Una reimaginación hermosa de la mitología griega. Circe es poderosa y muy humana.',
-    tags: ['Mitología', 'Feminista', 'Poético'],
-    date: '2024-01-08'
+    excerpt: 'Un Reality Show que promete engancharte desde la primera página y mantenerte envuelta en la misma casa con los protagonistas, con ese aura de misterio por las pruebas que solo va a más.',
+    tags: ['Reality Show', 'Misterio', 'Secretos'],
+    date: '2024-01-07'
   },
   {
     id: 3,
-    title: 'Los 7 Maridos de Evelyn Hugo',
-    author: 'Taylor Jenkins Reid',
-    rating: 4,
-    excerpt: 'Drama hollywoodiense adictivo. No pude parar de leer, me enganchó desde la primera página.',
-    tags: ['Romance', 'Drama', 'LGBTQ+'],
-    date: '2024-01-01'
-  },
-  {
-    id: 4,
-    title: 'Klara y el Sol',
-    author: 'Kazuo Ishiguro',
-    rating: 4,
-    excerpt: 'Reflexión profunda sobre la humanidad. Me hizo llorar y pensar durante días.',
-    tags: ['Sci-Fi', 'Emotivo', 'Filosofía'],
-    date: '2023-12-28'
+    title: 'En las nubes',
+    author: 'Hannah Grace',
+    rating: 5,
+    excerpt: 'Un Sport romance super tierno, con unos personajes que nos ofrecen una historia dulce, con momentos cómplices y momentos muy divertidos.',
+    tags: ['Sport romance', 'Hockey', 'BookClub'],
+    date: '2024-11-14'
   }
 ])
 

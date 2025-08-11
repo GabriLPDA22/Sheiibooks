@@ -206,51 +206,107 @@ const props = defineProps({
 const router = useRouter()
 const route = useRoute()
 
-// Datos del libro (normalmente vendrían de una API)
-const bookData = ref({
-  title: 'La asistenta',
-  author: 'Freida McFadden',
-  rating: 5,
-  tags: ['Thriller psicológico', 'Suspense', 'Novela negra', 'Adictivo'],
-  date: '2024-09-17',
-  photoWithBook: '/images/Review_la_asistenta.jpg', // Foto de Sheila con el libro
-
-  // Cita del libro (primer recuadro)
-  bookQuote: {
-    text: '“Al cerrar la puerta, noto marcas en la madera. Líneas largas y delgadas… parecen arañazos. Como si alguien hubiera estado rascando la puerta. Intentando salir.”',
-    context: 'La asistenta – Freida McFadden'
+// Datos de reseñas por ID (normalmente vendrían de una API)
+const REVIEWS_BY_ID = {
+  1: {
+    title: 'La asistenta',
+    author: 'Freida McFadden',
+    rating: 5,
+    tags: ['Thriller psicológico', 'Suspense', 'Novela negra', 'Adictivo'],
+    date: '2024-09-17',
+    photoWithBook: '/images/Review_la_asistenta.jpg',
+    bookQuote: {
+      text: '"Al cerrar la puerta, noto marcas en la madera. Líneas largas y delgadas… parecen arañazos. Como si alguien hubiera estado rascando la puerta. Intentando salir."',
+      context: 'La asistenta – Freida McFadden'
+    },
+    personalOpinion: [
+      'Es un libro que logra confundirte desde el principio, no confías en los personajes, sus actitudes son complejas y no sabes qué creer.',
+      'Me ha chiflado la manera de escribir de Freida, sabe cómo engancharte y dejarte con la intriga para querer seguir leyendo.',
+      'No es un libro con el que se pasa gran tensión, pero sí estás expectante a la espera del siguiente paso.'
+    ],
+    charactersOpinion: [
+      {
+        opinion: 'Freida consigue construir unos personajes llenos de misterio, y absolutamente todos tienen secretos. A medida que avanza la trama, esa familia perfecta se convierte en todo un embrollo psicológico y nadie es quien parece ser.'
+      }
+    ],
+    ambientacion: 'Encontrarnos en un lugar doméstico como la casa de la familia Winchester ha sido realmente inquietante, que es precisamente el objetivo de la lectura. Además de sentirte atrapado, ves cosas raras sin poder darles una explicación lógica.',
+    wouldRecommend: true,
+    recommendationReason: 'Si te gusta el thriller doméstico, algo de tensión y un enganche a una lectura ligera, esta es una apuesta segura.',
+    similarBooks: [
+      {
+        title: 'No la dejes entrar',
+        author: 'Nicola Sanders',
+        reason: 'Si te gustó “La asistenta” por su ritmo de lectura, personajes, tensión y los secretos familiares, “No la dejes entrar” va en la misma línea, compartiendo el mismo escenario de thriller doméstico.'
+      }
+    ]
   },
+  2: {
+    title: 'No confies en Asher Hall',
+    author: 'Myriam M. Lejardi',
+    rating: 5,
+    tags: ['Reality Show', 'Pruebas', 'Traiciones', 'Secretos'],
+    date: '2024-01-07',
+    photoWithBook: '/images/Review_no_confies_en_asher_hall.jpg',
+    bookQuote: {
+      text: '"A la gente le cuesta menos admirar el único acierto de un villano que perdonar el único error de un héroe"',
+      context: 'No confies en Asher Hall'
+    },
+    personalOpinion: [
+      'Te engancharas a este reality show mucho más que a cualquiera que veas en la tele.',
+      'Es alucinante como participan los personajes, como algunos siguen su instinto de confianza hacia otros y como otros se traicionan entre sí',
+      'Hacía mucho que no me sentía tan enganchada a un libro como con este, solo vas a querer ver más, qué ocurre en la casa y con los personajes'
+    ],
+    charactersOpinion: [
+      {
+        opinion: 'Aunque cada personaje actúa depende de sus intereses y hace lo posible por conseguir el premio, yo no he sido capaz de odiar a ninguno. Todos, absolutamente todos están súper bien creados y me han gustado en mayor o menor medida.'
+      }
+    ],
+    ambientacion: 'Nos encontramos en una casa con varios concursantes que tienen que llegar a completar una serie de pruebas para conseguir el bote y te sumerges tanto en la historia que te sientes un personaje más.',
+    wouldRecommend: true,
+    recommendationReason: 'Si buscas un libro con el que poder engancharte desde la primera página te aseguro que con este vas a asegurar la adicción por la lectura, solo querrás ver más del progreso de los protagonistas y las pruebas que deben de ir haciendo.',
+    similarBooks: [
+      {
+        title: 'Misha Zhukov debe morir',
+        author: 'Myriam M. Lejardi',
+        reason: 'Otro de los libros de la autora que sigue más o menos la misma línea de Asher Hall pero en otro contexto y con un mensaje profundo y unos personajes con una historia prometedora.'
+      }
+    ]
+  },
+  3: {
+    title: 'En las nubes',
+    author: 'Hannah Grace',
+    rating: 5,
+    tags: ['Sport Romance', 'Romance', 'Friends to lovers', 'Cute'],
+    date: '2024-11-14',
+    photoWithBook: '/images/Review_en_las_nubes.jpg',
+    bookQuote: {
+      text: '"+ ¿En qué piensas cuando estás en las nubes? —En ti, siempre en ti."',
+      context: 'En las nubes - Hannah Grace'
+    },
+    personalOpinion: [
+      'Uno de los sport romance más bonitos que he leído en mucho tiempo.',
+      'Me hubiera quedado en la historia de Henry y Halle un ratito más.'
+    ],
+    charactersOpinion: [
+      {
+        opinion: 'En esta historia nos encontramos a Henry y Halle, dos personajes súper cariñosos y entrañables. Encantadores desde la primera interacción, su amistad ha sido de lo más bonito del libro, lo bien que se comprenden y congenian.'
+      }
+    ],
+    ambientacion: 'Encontrarnos en un lugar domestico como la casa de la familia Winchester ha sido realmente inquietante, cual es el objetivo de la lectura. Ademas de sentirte atrapado, y viendo cosas raras sin poder darles una explicación lógica.',
+    wouldRecommend: true,
+    recommendationReason: 'Por supuesto recomendaría este libro, ya no solo por sus personajes y la historia tan tierna que tienen sino por el grupo de amigos que hacen con otros personajes de la serie de libros. Si queréis unos buenos Sport Romance recomiendo mucho leerlos todos.',
+    similarBooks: [
+      {
+        title: 'Collide',
+        author: 'Bal Khabra',
+        reason: 'Si te gustó “En las nubes” este libro te gustará por sus mismas vibes universitarias, con una química entre los protagonistas innegable que les lleva a tener una conexión muy bonita.'
+      }
+    ]
+  }
+}
 
-  // Opinión personal (varios párrafos)
-  personalOpinion: [
-    'Es un libro que logra confundirte desde el principio, no confías en los personajes, sus actitudes son complejas y no sabes qué creer.',
-    'Me ha chiflado la manera de escribir de Freida, sabe cómo engancharte y dejarte con la intriga para querer seguir leyendo.',
-    'No es un libro con el que se pasa gran tensión, pero sí estás expectante a la espera del siguiente paso.'
-  ],
-
-  // Sobre los personajes
-  charactersOpinion: [
-    {
-      opinion: 'Freida consigue construir unos personajes llenos de misterio, y absolutamente todos tienen secretos. A medida que avanza la trama, esa familia perfecta se convierte en todo un embrollo psicológico y nadie es quien parece ser.'
-    }
-  ],
-
-  // La ambientación
-  ambientacion: 'Encontrarnos en un lugar doméstico como la casa de la familia Winchester ha sido realmente inquietante, que es precisamente el objetivo de la lectura. Además de sentirte atrapado, ves cosas raras sin poder darles una explicación lógica.',
-
-  // Recomendación
-  wouldRecommend: true,
-  recommendationReason: 'Si te gusta el thriller doméstico, algo de tensión y un enganche a una lectura ligera, esta es una apuesta segura.',
-
-  // Libros similares
-  similarBooks: [
-    {
-      title: 'No la dejes entrar',
-      author: 'Nicola Sanders',
-      reason: 'Si te gustó “La asistenta” por su ritmo de lectura, personajes, tensión y los secretos familiares, “No la dejes entrar” va en la misma línea, compartiendo el mismo escenario de thriller doméstico.'
-    }
-  ]
-});
+// Seleccionar reseña según el id de la ruta (fallback a 1)
+const bookData = ref(REVIEWS_BY_ID[Number(props.id)] || REVIEWS_BY_ID[1]);
 
 
 const formatDateLong = (dateStr) => {

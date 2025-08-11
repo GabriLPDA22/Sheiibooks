@@ -72,6 +72,8 @@ watch(() => route.path, () => {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Special+Elite&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
 /* Reset y estilos base */
 * {
   margin: 0;
@@ -384,6 +386,4 @@ body {
   }
 }
 
-/* Fuentes importadas */
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Special+Elite&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
 </style>

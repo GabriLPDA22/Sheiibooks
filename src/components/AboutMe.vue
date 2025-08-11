@@ -33,27 +33,24 @@
 
             <!-- Mini datos curiosos -->
             <div class="fun-facts">
-              <h3 class="facts-title">Datos curiosos:</h3>
+              <h3 class="facts-title">Por si quieres conocerme un poquito más:</h3>
               <ul class="facts-list">
                 <li class="fact-item">
                   <span class="fact-icon">🎂</span>
-                  <span class="fact-text">23 años</span>
+                  <span class="fact-text">Tengo 23 años</span>
                 </li>
                 <li class="fact-item">
                   <span class="fact-icon">📍</span>
-                  <span class="fact-text">España</span>
+                  <span class="fact-text">Soy de Zaragoza, España</span>
                 </li>
                 <li class="fact-item">
-                  <span class="fact-icon">☕</span>
-                  <span class="fact-text">Adicta al café con leche</span>
+                  <span class="fact-icon">✨</span>
+                  <span class="fact-text">Mi pasión son los libros, pero también soy adicta a los gatos, las velas y el
+                    café</span>
                 </li>
                 <li class="fact-item">
                   <span class="fact-icon">🌙</span>
-                  <span class="fact-text">Lectora nocturna</span>
-                </li>
-                <li class="fact-item">
-                  <span class="fact-icon">📚</span>
-                  <span class="fact-text">+200 libros al año</span>
+                  <span class="fact-text">Lectora nocturna (o siempre que pueda)</span>
                 </li>
               </ul>
             </div>
@@ -66,9 +63,8 @@
             <!-- Introducción -->
             <div class="intro-section">
               <p class="intro-text">
-                ¡Bienvenidos a mi rincón literario! Soy <span class="highlight">Sheila</span>,
-                una apasionada lectora que vive entre páginas y sueña con historias.
-                Desde pequeña, los libros han sido mis mejores compañeros de aventuras.
+                ¡Bienvenidos a una parte de mi rinconcito literario! Soy <span class="highlight">Sheila</span>,
+                una apasionada por la lectura que le encanta sumergirse entre páginas y conocer nuevos mundos.
               </p>
             </div>
 
@@ -76,9 +72,11 @@
             <div class="story-section">
               <h3 class="subsection-title">Mi historia con los libros</h3>
               <p class="story-text">
-                Todo comenzó cuando tenía 8 años y mi abuela me regaló mi primer libro de fantasía.
-                Desde entonces, no he parado de leer. Lo que empezó como una forma de escapar de la
-                realidad se convirtió en mi mayor pasión. Ahora, no puedo imaginar mi vida sin libros.
+                Porque aunque parezca que no, a mí de pequeñita no me gustaba leer, pero ahora no me puedes separar de
+                uno.
+                Y sí, soy de esas que comenzó leyendo fanfics y desde entonces solo pude ir a más e ir descubriendo
+                poquito a poco
+                lo que realmente me gusta leer a día de hoy.
               </p>
             </div>
 
@@ -86,51 +84,46 @@
             <div class="blog-reason">
               <h3 class="subsection-title">¿Por qué este blog?</h3>
               <p class="reason-text">
-                Creé <span class="blog-name">Sheiibooks</span> porque quería un espacio donde compartir
-                mi amor por la lectura. Aquí encontrarás reseñas honestas, recomendaciones apasionadas
-                y muchas reflexiones sobre los mundos que descubro en cada página.
+                Creo que es una manera un poquito diferente e igual de cercana para poder compartir algunas de mis
+                lecturas favoritas
+                y dar a conocer otras cositas de mí que me gustan, ¡quizá coincidamos en algo! Te animo a que te quedes
+                a ver un poquito más.
               </p>
             </div>
 
             <!-- Lo que me gusta -->
             <div class="likes-section">
-              <h3 class="subsection-title">Además de leer, me encanta...</h3>
+              <h3 class="subsection-title">Además de leer me encanta…</h3>
               <div class="likes-grid">
                 <div class="like-item">
-                  <span class="like-icon">✍️</span>
-                  <span class="like-text">Escribir en mi diario</span>
+                  <span class="like-icon">📖</span>
+                  <span class="like-text">Crear contenido literario</span>
                 </div>
                 <div class="like-item">
                   <span class="like-icon">🎨</span>
-                  <span class="like-text">Hacer bookstagram</span>
+                  <span class="like-text">Hacer Book Journal</span>
                 </div>
                 <div class="like-item">
-                  <span class="like-icon">🍰</span>
-                  <span class="like-text">Repostería casera</span>
+                  <span class="like-icon">🕯</span>
+                  <span class="like-text">La velas aromáticas para acompañar mis lecturas</span>
                 </div>
                 <div class="like-item">
-                  <span class="like-icon">🎬</span>
-                  <span class="like-text">Adaptaciones de libros</span>
+                  <span class="like-icon">🔖</span>
+                  <span class="like-text">El merch literario</span>
                 </div>
                 <div class="like-item">
-                  <span class="like-icon">🌿</span>
-                  <span class="like-text">Pasear por la naturaleza</span>
+                  <span class="like-icon">☕</span>
+                  <span class="like-text">Tomar café</span>
                 </div>
                 <div class="like-item">
-                  <span class="like-icon">🎵</span>
-                  <span class="like-text">Playlists para leer</span>
+                  <span class="like-icon">🐈</span>
+                  <span class="like-text">Pasar ratito con mis michis</span>
+                </div>
+                <div class="like-item">
+                  <span class="like-icon">📺</span>
+                  <span class="like-text">Ver Friends una y otra vez</span>
                 </div>
               </div>
-            </div>
-
-            <!-- Frase motivacional -->
-            <div class="quote-section">
-              <div class="quote-marks">"</div>
-              <p class="motivational-quote">
-                Un libro es un sueño que tienes en tus manos.
-                Mi misión es ayudarte a encontrar tu próximo sueño favorito.
-              </p>
-              <div class="quote-author">— Sheila ♡</div>
             </div>
           </div>
         </div>
@@ -138,9 +131,9 @@
 
       <!-- Sección de contacto/redes -->
       <footer class="contact-section">
-        <h3 class="contact-title">¡Conectemos!</h3>
+        <h3 class="contact-title">¡Sigámonos!</h3>
         <p class="contact-text">
-          Me encantaría conocer tus recomendaciones y charlar sobre libros
+          Me encantaría poder charlar contigo sobre nuestros libros favoritos
         </p>
         <div class="social-links">
           <a href="#" class="social-link instagram">
@@ -182,21 +175,21 @@ onMounted(() => {
     { opacity: 0, y: 30 },
     { opacity: 1, y: 0, duration: 0.8 }
   )
-  .fromTo('.left-side',
-    { opacity: 0, x: -50 },
-    { opacity: 1, x: 0, duration: 0.8 },
-    "-=0.4"
-  )
-  .fromTo('.right-side',
-    { opacity: 0, x: 50 },
-    { opacity: 1, x: 0, duration: 0.8 },
-    "-=0.6"
-  )
-  .fromTo('.contact-section',
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.6 },
-    "-=0.2"
-  )
+    .fromTo('.left-side',
+      { opacity: 0, x: -50 },
+      { opacity: 1, x: 0, duration: 0.8 },
+      "-=0.4"
+    )
+    .fromTo('.right-side',
+      { opacity: 0, x: 50 },
+      { opacity: 1, x: 0, duration: 0.8 },
+      "-=0.6"
+    )
+    .fromTo('.contact-section',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6 },
+      "-=0.2"
+    )
 
   // Animación de elementos flotantes
   gsap.to('.float-element', {
@@ -275,9 +268,17 @@ onMounted(() => {
   animation: gentle-float 3s ease-in-out infinite;
 }
 
-.deco-item.book { animation-delay: 0s; }
-.deco-item.heart { animation-delay: 1s; }
-.deco-item.coffee { animation-delay: 2s; }
+.deco-item.book {
+  animation-delay: 0s;
+}
+
+.deco-item.heart {
+  animation-delay: 1s;
+}
+
+.deco-item.coffee {
+  animation-delay: 2s;
+}
 
 .section-title {
   font-family: 'Dancing Script', cursive;
@@ -625,16 +626,42 @@ onMounted(() => {
   opacity: 0.3;
 }
 
-.el-1 { top: 10%; left: 5%; }
-.el-2 { top: 20%; right: 10%; }
-.el-3 { bottom: 30%; left: 8%; }
-.el-4 { top: 60%; right: 15%; }
-.el-5 { bottom: 15%; right: 25%; }
+.el-1 {
+  top: 10%;
+  left: 5%;
+}
+
+.el-2 {
+  top: 20%;
+  right: 10%;
+}
+
+.el-3 {
+  bottom: 30%;
+  left: 8%;
+}
+
+.el-4 {
+  top: 60%;
+  right: 15%;
+}
+
+.el-5 {
+  bottom: 15%;
+  right: 25%;
+}
 
 /* Animaciones */
 @keyframes gentle-float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* Responsive */

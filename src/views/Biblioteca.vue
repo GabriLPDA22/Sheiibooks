@@ -9,7 +9,9 @@
     <!-- Sección de Recent Reviews (tu cuaderno actual) -->
     <RecentReviews />
 
-    <!-- Aquí puedes añadir más secciones en el futuro -->
+    <!-- Sección de Instagram -->
+    <InstagramSection />
+
   </div>
 </template>
 
@@ -17,6 +19,7 @@
 import AboutMe from '../components/AboutMe.vue'
 import FavoriteGenres from '../components/FavoriteGenres.vue'
 import RecentReviews from '../components/RecentReviews.vue'
+import InstagramSection from '../components/InstagramSection.vue'
 </script>
 
 <style scoped>
